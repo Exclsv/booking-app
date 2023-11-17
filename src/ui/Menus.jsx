@@ -87,6 +87,7 @@ function Toggle({ id }) {
   const { openId, close, open, setPosition } = useContext(MenusContext)
 
   function handleClick(e) {
+    e.stopPropagation()
     // The Element.getBoundingClientRect() method returns a DOMRect object providing
     // information about the size of an element and its position relative to the viewport.
     const rect = e.target.closest('button').getBoundingClientRect()
@@ -108,7 +109,7 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext)
-  const ref = useOutsideClick(close)
+  const ref = useOutsideClick(close, false)
 
   if (openId !== id) return null
 
